@@ -1,12 +1,12 @@
 {
-  "name": "simmerz-yarn",
+  "name": "initforthe-yarn",
   "version": "1.0.1",
   "author": "artberri",
   "summary": "Puppet Module to install Yarn Package Manager",
   "license": "Apache-2.0",
-  "source": "https://github.com/simmerz/puppet-yarn",
-  "project_page": "https://github.com/simmerz/puppet-yarn",
-  "issues_url": "https://github.com/simmerz/puppet-yarn/issues",
+  "source": "https://github.com/initforthe/puppet-yarn",
+  "project_page": "https://github.com/initforthe/puppet-yarn",
+  "issues_url": "https://github.com/initforthe/puppet-yarn/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
