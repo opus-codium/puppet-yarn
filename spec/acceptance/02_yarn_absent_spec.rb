@@ -1,7 +1,6 @@
 require 'spec_helper_acceptance'
 
 describe 'removing yarn' do
-
   describe 'running puppet code' do
     pp = <<-EOS
       class { 'nodejs':
@@ -37,18 +36,16 @@ describe 'removing yarn' do
     EOS
     let(:manifest) { pp }
 
-    it 'should work with no errors' do
-      apply_manifest(manifest, :catch_failures => true)
+    it 'works with no errors' do
+      apply_manifest(manifest, catch_failures: true)
     end
 
-    it 'should be idempotent' do
-      apply_manifest(manifest, :catch_changes => true)
+    it 'is idempotent' do
+      apply_manifest(manifest, catch_changes: true)
     end
 
     describe command('yarn -h') do
-      its(:exit_status) { should eq 127 }
+      its(:exit_status) { is_expected.to eq 127 }
     end
-
   end
-
 end
