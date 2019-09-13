@@ -1,6 +1,6 @@
 {
   "name": "initforthe-yarn",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "artberri",
   "summary": "Puppet Module to install Yarn Package Manager",
   "license": "Apache-2.0",
