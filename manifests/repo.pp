@@ -18,7 +18,6 @@ class yarn::repo (
           repos    => 'main',
           key      => {
             'id'     => '72ECF46A56B4AD39C907BBB71646B01B86E50310',
-            'server' => 'hkps.pool.sks-keyservers.net',
           },
         }
 
