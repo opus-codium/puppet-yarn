@@ -1,7 +1,7 @@
 # See README.md for usage information
 class yarn::repo (
-  $manage_repo,
-  $package_name,
+  Boolean $manage_repo,
+  String[1] $package_name,
 ) {
   assert_private()
 

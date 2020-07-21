@@ -96,16 +96,16 @@ describe 'yarn', type: :class do
         }
       end
 
-      context 'with package_ensure => dummy' do
+      context 'with package_ensure => present' do
         let :params do
           {
-            package_ensure: 'dummy',
+            package_ensure: 'present',
           }
         end
 
         it {
           is_expected.to contain_class('yarn::install')
-            .with_package_ensure('dummy')
+            .with_package_ensure('present')
         }
       end
 
@@ -122,29 +122,29 @@ describe 'yarn', type: :class do
         }
       end
 
-      context 'with source_install_dir => dummy' do
+      context 'with source_install_dir => /yarndir' do
         let :params do
           {
-            source_install_dir: 'dummy',
+            source_install_dir: '/yarndir',
           }
         end
 
         it {
           is_expected.to contain_class('yarn::install')
-            .with_source_install_dir('dummy')
+            .with_source_install_dir('/yarndir')
         }
       end
 
-      context 'with symbolic_link => dummy' do
+      context 'with symbolic_link => /usr/bin/yarn' do
         let :params do
           {
-            symbolic_link: 'dummy',
+            symbolic_link: '/usr/bin/yarn',
           }
         end
 
         it {
           is_expected.to contain_class('yarn::install')
-            .with_symbolic_link('dummy')
+            .with_symbolic_link('/usr/bin/yarn')
         }
       end
 
@@ -161,16 +161,16 @@ describe 'yarn', type: :class do
         }
       end
 
-      context 'with source_url => dummy' do
+      context 'with source_url => https://example.com/yarn.tgz' do
         let :params do
           {
-            source_url: 'dummy',
+            source_url: 'https://example.com/yarn.tgz',
           }
         end
 
         it {
           is_expected.to contain_class('yarn::install')
-            .with_source_url('dummy')
+            .with_source_url('https://example.com/yarn.tgz')
         }
       end
     end
