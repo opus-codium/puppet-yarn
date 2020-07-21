@@ -145,7 +145,7 @@ class { 'yarn':
 
 ```
 class { 'yarn':
-  package_ensure => false,
+  package_ensure => 'absent',
 }
 
 ```
