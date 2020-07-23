@@ -9,7 +9,6 @@
 #### Public Classes
 
 * [`yarn`](#yarn): Install and configure Yarn
-* [`yarn::params`](#yarnparams): See README.md for usage information
 
 #### Private Classes
 
@@ -28,73 +27,67 @@ The following parameters are available in the `yarn` class.
 
 ##### `package_ensure`
 
-Data type: `Any`
+Data type: `Enum['present','absent']`
 
 with `present` Yarn is installed
 with `absent` Yarn is uninstalled
 
-Default value: `$yarn::params::package_ensure`
+Default value: `'present'`
 
 ##### `package_name`
 
-Data type: `Any`
+Data type: `String[1]`
 
 The name of package expected to be installed with package manager provided by your OS or by npm.
 
-Default value: `$yarn::params::package_name`
+Default value: `'yarn'`
 
 ##### `manage_repo`
 
-Data type: `Any`
+Data type: `Boolean`
 
 with `true` a new source using yarnpkg.com is added in the package manager of your OS.
 with `false` do nothing
-
-Default value: `$yarn::params::manage_repo`
+Default value: handled by hiera data of the module.
 
 ##### `install_method`
 
-Data type: `Any`
+Data type: `Enum['npm', 'source', 'package']`
 
 with `source` the `source_url` is used to get and install Yarn
 with `package` the package manager provider by OS is used to install Yarn
 with `npm` the npm packahe manager is used to install Yarn
-
-Default value: `$yarn::params::install_method`
+Default value: handled by hiera data of the module.
 
 ##### `source_install_dir`
 
-Data type: `Any`
+Data type: `Stdlib::Absolutepath`
 
 path where Yarn sources are installed with `install_method` to `source`
 
-Default value: `$yarn::params::source_install_dir`
+Default value: `'/opt'`
 
 ##### `symbolic_link`
 
-Data type: `Any`
+Data type: `Stdlib::Absolutepath`
 
 the `yarn` command in the path pointing to the installed `yarn` with `install_method` to `source`
 
-Default value: `$yarn::params::symbolic_link`
+Default value: `'/usr/local/bin/yarn'`
 
 ##### `user`
 
-Data type: `Any`
+Data type: `String[1]`
 
 the user account on node owner of installed files with `install_method` to `source` or `npm`
 
-Default value: `$yarn::params::user`
+Default value: `'root'`
 
 ##### `source_url`
 
-Data type: `Any`
+Data type: `Stdlib::HTTPUrl`
 
 URL where the sources are downloaded from
 
-Default value: `$yarn::params::source_url`
-
-### `yarn::params`
-
-See README.md for usage information
+Default value: `'https://yarnpkg.com/latest.tar.gz'`
 

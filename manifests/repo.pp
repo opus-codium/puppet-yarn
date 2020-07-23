@@ -1,17 +1,10 @@
-# Ensure yarnpkg.com is used as source for package manager
-#
 # @summary Ensure yarnpkg.com is used as source for package manager
-#
-# @param package_name The name of package expected to be installed with package manager provided by your OS or by npm.
-# @param manage_repo
-#   with `true` a new source using yarnpkg.com is added in the package manager of your OS with 
-#   with `false` do nothing
 #
 # @api private
 #
 class yarn::repo (
-  Boolean $manage_repo,
-  String[1] $package_name,
+  Boolean $manage_repo = $yarn::manage_repo,
+  String[1] $package_name = $yarn::package_name,
 ) {
   assert_private()
 

@@ -9,10 +9,12 @@
 # @param manage_repo
 #   with `true` a new source using yarnpkg.com is added in the package manager of your OS.
 #   with `false` do nothing
+#   Default value: handled by hiera data of the module.
 # @param install_method
 #   with `source` the `source_url` is used to get and install Yarn
 #   with `package` the package manager provider by OS is used to install Yarn
 #   with `npm` the npm packahe manager is used to install Yarn
+#   Default value: handled by hiera data of the module.
 # @param source_install_dir
 #   path where Yarn sources are installed with `install_method` to `source`
 # @param symbolic_link the `yarn` command in the path pointing to the installed `yarn` with `install_method` to `source`
@@ -20,35 +22,20 @@
 # @param source_url URL where the sources are downloaded from
 #
 class yarn (
-  Enum['present','absent'] $package_ensure = $yarn::params::package_ensure,
-  String[1] $package_name = $yarn::params::package_name,
-  Boolean $manage_repo = $yarn::params::manage_repo,
-  Enum['npm', 'source', 'package'] $install_method = $yarn::params::install_method,
-  Stdlib::Absolutepath $source_install_dir = $yarn::params::source_install_dir,
-  Stdlib::Absolutepath $symbolic_link = $yarn::params::symbolic_link,
-  String[1] $user = $yarn::params::user,
-  Stdlib::HTTPUrl $source_url = $yarn::params::source_url
-) inherits yarn::params {
+  Boolean $manage_repo,
+  Enum['npm', 'source', 'package'] $install_method,
+  Enum['present','absent'] $package_ensure = 'present',
+  String[1] $package_name = 'yarn',
+  Stdlib::Absolutepath $source_install_dir = '/opt',
+  Stdlib::Absolutepath $symbolic_link = '/usr/local/bin/yarn',
+  String[1] $user = 'root',
+  Stdlib::HTTPUrl $source_url = 'https://yarnpkg.com/latest.tar.gz',
+)  {
 
-  include stdlib
+  contain yarn::repo
+  contain yarn::install
 
-  anchor { 'yarn::begin': }
-
-  -> class { 'yarn::repo':
-    manage_repo  => $manage_repo,
-    package_name => $package_name,
-  }
-
-  ~> class { 'yarn::install':
-    package_ensure     => $package_ensure,
-    package_name       => $package_name,
-    install_method     => $install_method,
-    source_install_dir => $source_install_dir,
-    symbolic_link      => $symbolic_link,
-    user               => $user,
-    source_url         => $source_url,
-  }
-
-  -> anchor { 'yarn::end': }
+  Class['yarn::repo']
+  ~> Class['yarn::install']
 
 }

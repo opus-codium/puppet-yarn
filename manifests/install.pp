@@ -1,33 +1,15 @@
-# Install Yarn
-#
 # @summary Install Yarn
-#
-# @param package_ensure
-#   with `present` Yarn is installed
-#   with `absent` Yarn is uninstalled
-# @param package_name The name of package expected to be installed with package manager provided by your OS or by npm.
-# @param install_method
-#   with `source` the `source_url` is used to get and install Yarn
-#   with `package` the package manager provider by OS is used to install Yarn
-#   with `npm` the npm packahe manager is used to install Yarn
-# @param source_install_dir
-#   path where Yarn sources are installed with `install_method` to `source`
-# @param symbolic_link the `yarn` command in the path pointing to the installed `yarn` with `install_method` to `source`
-# @param user
-#   the user account that own installed files with `install_method` to `source` or `npm`.
-#   this module does not create it and need to be already existing.
-# @param source_url URL where the sources are downloaded from
 #
 # @api private
 #
 class yarn::install (
-  Enum['present','absent'] $package_ensure,
-  String[1] $package_name,
-  Enum['npm', 'source', 'package'] $install_method,
-  Stdlib::Absolutepath $source_install_dir,
-  Stdlib::Absolutepath $symbolic_link,
-  String[1] $user,
-  Stdlib::HTTPUrl $source_url,
+  Enum['present','absent'] $package_ensure = $yarn::package_ensure,
+  String[1] $package_name = $yarn::package_name,
+  Enum['npm', 'source', 'package'] $install_method = $yarn::install_method,
+  Stdlib::Absolutepath $source_install_dir = $yarn::source_install_dir,
+  Stdlib::Absolutepath $symbolic_link = $yarn::symbolic_link,
+  String[1] $user = $yarn::user,
+  Stdlib::HTTPUrl $source_url = $yarn::source_url,
 ) {
   assert_private()
 
