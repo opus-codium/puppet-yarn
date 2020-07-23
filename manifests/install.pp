@@ -1,12 +1,12 @@
 # See README.md for usage information
 class yarn::install (
-  $package_ensure,
-  $package_name,
-  $install_method,
-  $source_install_dir,
-  $symbolic_link,
-  $user,
-  $source_url,
+  Enum['present','absent'] $package_ensure,
+  String[1] $package_name,
+  Enum['npm', 'source', 'package'] $install_method,
+  Stdlib::Absolutepath $source_install_dir,
+  Stdlib::Absolutepath $symbolic_link,
+  String[1] $user,
+  Stdlib::HTTPUrl $source_url,
 ) {
   assert_private()
 
