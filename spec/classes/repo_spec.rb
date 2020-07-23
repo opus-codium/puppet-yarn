@@ -22,7 +22,10 @@ describe 'yarn', type: :class do
               .with_location('http://dl.yarnpkg.com/debian/')
               .with_release('stable')
               .with_repos('main')
-              .with_key('id' => '72ECF46A56B4AD39C907BBB71646B01B86E50310')
+              .with_key(
+                'id' => '72ECF46A56B4AD39C907BBB71646B01B86E50310',
+                'source' => 'https://dl.yarnpkg.com/debian/pubkey.gpg',
+              )
           }
           it { is_expected.not_to contain_yumrepo('yarn') }
         when 'RedHat'
