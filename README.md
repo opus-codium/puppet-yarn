@@ -152,35 +152,7 @@ class { 'yarn':
 
 ## Reference
 
-### Class: `yarn`
-
-Guides the basic setup and installation of yarn on your system. It is the only public class.
-
-When this class is declared with the default options, Puppet:
-
-- Installs latest version of yarn.
-- Uses package installation for Debian and RedHat families and source installation for the rest.
-
-You can simply declare the default `yarn` class:
-
-``` puppet
-class { 'yarn': }
-```
-
-**Parameters within `yarn`:**
-
-#### `package_ensure`
-
-What state the package should be in. It will be passed to the `ensure` parameter when the `package` install method is used. If it is
-set to `absent` it will remove Yarn for all installation methods.
-
-Default: `present`.
-
-#### `package_name`
-
-The package name. You can include the version also if you are using the `npm` installation method.
-
-Default: `yarn`.
+Details are into `REFERENCE.md` in puppet-strings format, excepted for OS dependent values of `yarn` class presented bellow.
 
 #### `manage_repo`
 
@@ -196,44 +168,15 @@ Default: `package` for Debian and RedHat, `source` for the rest.
 
 - Ensures packages `wget`, `tar` and `gzip` when `source` method is used.
 
-#### `source_install_dir`
-
-The installation directory when `source` installation method is used.
-
-Default: `/opt`.
-
-#### `symbolic_link`
-
-The path to create a symbolic link in order to make yarn available for all users.
-
-Default: `/usr/local/bin/yarn`.
-
-#### `user`
-
-Sets the user for `source` and `npm` installation methods.
-
-Default: `root`.
-
-#### `source_url`
-
-Url to download Yarn when `source` installation method is used.
-
-Default: `https://yarnpkg.com/latest.tar.gz`.
 
 ## Limitations
 
 This module can not work on Windows and should work on LINUX systems.
 
-This module is CI tested against [open source Puppet](http://docs.puppetlabs.com/puppet/) on:
-
-- CentOS 7
-- Ubuntu 14.04
-- Debian 7
+This module is CI tested against [open source Puppet](http://docs.puppetlabs.com/puppet/) on OSes declared in `metadata.json`.
 
 This module should also work properly in other distributions and operating systems, such as FreeBSD, Gentoo, and Amazon Linux,
 but is not formally tested on them.
-
-Report an [issue](../../issues) if this module does not work properly in any Linux distro.
 
 ## Development
 

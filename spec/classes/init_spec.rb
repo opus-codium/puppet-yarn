@@ -8,10 +8,6 @@ describe 'yarn', type: :class do
       end
 
       context 'with default params' do
-        it { is_expected.to contain_class('stdlib') }
-
-        it { is_expected.to contain_class('yarn::params') }
-
         case facts[:osfamily]
         when 'Debian', 'RedHat'
           it {
