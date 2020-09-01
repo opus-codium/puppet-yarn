@@ -19,6 +19,7 @@ class yarn::repo (
           key      => {
             id     => '72ECF46A56B4AD39C907BBB71646B01B86E50310',
             source => 'https://dl.yarnpkg.com/debian/pubkey.gpg',
+            ensure => 'refreshed',
           },
         }
 
